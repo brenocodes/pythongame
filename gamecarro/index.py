@@ -9,20 +9,19 @@ y = 400
 v = 10
 y1 = 0
 v1 = -20
-fundo = pygame.image.load('img/estrada.png')
-pista1 = pygame.image.load('img/estrada.png')
-pista2 = pygame.image.load('img/asfalto.png')
-carro = pygame.image.load('img/f1.png')
+fundo = pygame.image.load('Game carro\img\Estrada.png')
+pista1 = pygame.image.load('Game carro\img\estrada.jpg')
+carro = pygame.image.load('C:\Users\bscbr\OneDrive\Documentos\AnaliseDesenvolvimentodeSistemasFSL\Game carro\pythongame\Game carro\img\f1.png')
 carro = pygame.transform.scale(carro, (100,150))
 
-carro_1 = pygame.image.load('img/carro1.png')
+carro_1 = pygame.image.load('Game carro\img\carro1.png')
 largura_carro1 = 50  # Largura desejada para o carro_1
 altura_carro1 = 100  # Altura desejada para o carro_1
 carro_1 = pygame.transform.scale(carro_1, (largura_carro1, altura_carro1))
 carro_1_x = 150  # Posição inicial no eixo x
 carro_1_y = random.randint(-altura_carro1, -100)  # Posição inicial aleatória no eixo y
 
-carro_2 = pygame.image.load('img/carro2.png')
+carro_2 = pygame.image.load('Game carro\img\carro2.png')
 largura_carro2 = 50  # Largura desejada para o carro_2
 altura_carro2 = 100  # Altura desejada para o carro_2
 carro_2 = pygame.transform.scale(carro_2, (largura_carro2, altura_carro2))
