@@ -9,26 +9,26 @@ y = 400
 v = 10
 y1 = 0
 v1 = -20
-fundo = pygame.image.load('Game carro\img\Estrada.png')
-pista1 = pygame.image.load('Game carro\img\estrada.jpg')
-carro = pygame.image.load('C:\Users\bscbr\OneDrive\Documentos\AnaliseDesenvolvimentodeSistemasFSL\Game carro\pythongame\Game carro\img\f1.png')
+fundo = pygame.image.load('gamecarro/img/Estrada.png')
+pista1 = pygame.image.load('gamecarro/img/estrada.jpg')
+carro = pygame.image.load('gamecarro/img/f1.png')
 carro = pygame.transform.scale(carro, (100,150))
 
-carro_1 = pygame.image.load('Game carro\img\carro1.png')
+carro_1 = pygame.image.load('gamecarro/img/carro1.png')
 largura_carro1 = 50  # Largura desejada para o carro_1
 altura_carro1 = 100  # Altura desejada para o carro_1
 carro_1 = pygame.transform.scale(carro_1, (largura_carro1, altura_carro1))
 carro_1_x = 150  # Posição inicial no eixo x
 carro_1_y = random.randint(-altura_carro1, -100)  # Posição inicial aleatória no eixo y
 
-carro_2 = pygame.image.load('Game carro\img\carro2.png')
+carro_2 = pygame.image.load('gamecarro/img/carro2.png')
 largura_carro2 = 50  # Largura desejada para o carro_2
 altura_carro2 = 100  # Altura desejada para o carro_2
 carro_2 = pygame.transform.scale(carro_2, (largura_carro2, altura_carro2))
 carro_2_x = 400  # Posição inicial no eixo x
 carro_2_y = random.randint(-altura_carro2, -100)  # Posição inicial aleatória no eixo y
 
-pixel_font = pygame.font.Font('font/pixel-font.ttf',80) # Adicionando fonte pixel
+pixel_font = pygame.font.Font('gamecarro/font/pixel-font.ttf',80) # Adicionando fonte pixel
 
 janela = pygame.display.set_mode((1050, 650))
 pygame.display.set_caption('jogo parte 1')
@@ -42,8 +42,8 @@ game_over_text = pixel_font.render('Game Over', True, (255, 255, 255))
 game_over_rect = game_over_text.get_rect(center=(janela.get_width() // 2, janela.get_height() // 2))
 
 distance = 0  
-speed = 80
-increase_rate = 1500  # Taxa de aumento de velocidade de descida do fundo
+speed = 20
+increase_rate = 800  # Taxa de aumento de velocidade de descida do fundo
 
 janela_aberta = True
 game_over = False
@@ -109,7 +109,7 @@ while janela_aberta:
 
     janela.blit(fundo, (0, y1))  
     janela.blit(distance_element, distance_rect)
-    janela.blit(carro, (x, y))
+    janela.blit(carro, (x+500, y))
     janela.blit(carro_1, (carro_1_x, carro_1_y))
     janela.blit(carro_2, (carro_2_x, carro_2_y))
 
