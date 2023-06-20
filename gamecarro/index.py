@@ -7,27 +7,27 @@ y = 400
 v = 10
 y1 = 0
 v1 = -20
-fundo = pygame.image.load('img/estrada.png')
-pista1 = pygame.image.load('img/estrada.png')
-pista2 = pygame.image.load('img/asfalto.png')
-carro = pygame.image.load('img/f1.png')
+fundo = pygame.image.load('gamecarro/img/estrada.png')
+pista1 = pygame.image.load('gamecarro/img/estrada.png')
+pista2 = pygame.image.load('gamecarro/img/asfalto.png')
+carro = pygame.image.load('gamecarro/img/f1.png')
 carro = pygame.transform.scale(carro, (100, 150))
 
-carro_1 = pygame.image.load('img/carro1.png')
+carro_1 = pygame.image.load('gamecarro/img/carro1.png')
 largura_carro1 = 50  # Largura desejada para o carro_1
 altura_carro1 = 100  # Altura desejada para o carro_1
 carro_1 = pygame.transform.scale(carro_1, (largura_carro1, altura_carro1))
 carro_1_x = 150  # Posição inicial no eixo x
 carro_1_y = random.randint(-altura_carro1, -100)  # Posição inicial aleatória no eixo y
 
-carro_2 = pygame.image.load('img/carro2.png')
+carro_2 = pygame.image.load('gamecarro/img/carro2.png')
 largura_carro2 = 50  # Largura desejada para o carro_2
 altura_carro2 = 100  # Altura desejada para o carro_2
 carro_2 = pygame.transform.scale(carro_2, (largura_carro2, altura_carro2))
 carro_2_x = 400  # Posição inicial no eixo x
 carro_2_y = random.randint(-altura_carro2, -100)  # Posição inicial aleatória no eixo y
 
-carro_3 = pygame.image.load('img/carro3.png')
+carro_3 = pygame.image.load('gamecarro/img/carro3.png')
 largura_carro_3 = 50  # Largura desejada para o carro_3
 altura_carro_3 = 100  # Altura desejada para o carro_3
 carro_3 = pygame.transform.scale(carro_3, (largura_carro_3, altura_carro_3))
@@ -35,8 +35,15 @@ carro_3_x = 600 # Posição inicial no eixo x
 carro_3_y = random.randint(-altura_carro_3, -100)  # Posição inicial aleatória no eixo y
 carro_3_speed = 20  # Velocidade do carro 3
 
-pixel_font = pygame.font.Font('font/pixel-font.ttf', 80)  # Adicionando fonte pixel
-fonte_botao = pygame.font.SysFont('font/pixel-font.ttf', 40)
+carro_4 = pygame.image.load('gamecarro/img/carro4.png')
+largura_carro4 = 50  # Largura desejada para o carro_4
+altura_carro4 = 100  # Altura desejada para o carro_4
+carro_4 = pygame.transform.scale(carro_4, (largura_carro4, altura_carro4))
+carro_4_x = 800  # Posição inicial no eixo x
+carro_4_y = random.randint(-altura_carro4, -100)  # Posição inicial aleatória no eixo y
+
+pixel_font = pygame.font.Font('gamecarro/font/pixel-font.ttf', 80)  # Adicionando fonte pixel
+fonte_botao = pygame.font.SysFont('gamecarro/font/pixel-font.ttf', 40)
 
 janela = pygame.display.set_mode((1050, 650))
 pygame.display.set_caption('jogo parte 1')
@@ -85,6 +92,7 @@ while True:
             carro_1_y = random.randint(-altura_carro1, -100)
             carro_2_y = random.randint(-altura_carro2, -100)
             carro_3_y = random.randint(-altura_carro_3, -100)
+            carro_4_y = random.randint(-altura_carro4, -100)
 
     if jogando:
         pygame.time.delay(50)
@@ -120,6 +128,8 @@ while True:
 
         carro_1_speed = 50
         carro_2_speed = 20
+        carro_3_speed = 30
+        carro_4_speed = 80
 
         jogador_rect = pygame.Rect(x, y, carro.get_width(), carro.get_height())
 
@@ -132,6 +142,7 @@ while True:
             carro_1_speed = 0
             carro_2_speed = 0
             carro_3_speed = 0
+            carro_4_speed = 0
 
         # Verifica a colisão com carro_2
         carro_2_rect = pygame.Rect(carro_2_x, carro_2_y, largura_carro2, altura_carro2)
@@ -141,15 +152,27 @@ while True:
             carro_1_speed = 0
             carro_2_speed = 0
             carro_3_speed = 0
+            carro_4_speed = 0
 
         # Verifica a colisão com carro_3
         carro_3_rect = pygame.Rect(carro_3_x, carro_3_y, largura_carro_3, altura_carro_3)
         if carro_3_rect.colliderect(jogador_rect):
             game_over = True
             speed = 0  # Para o movimento do jogador
-            carro_1_speed = 0
+            cacarro_1_speed = 0
             carro_2_speed = 0
             carro_3_speed = 0
+            carro_4_speed = 0
+
+  # Verifica a colisão com carro_4
+        carro_4_rect = pygame.Rect(carro_4_x, carro_4_y, largura_carro4, altura_carro4)
+        if carro_4_rect.colliderect(jogador_rect):
+            game_over = True
+            speed = 0  # Para o movimento do jogador
+            cacarro_1_speed = 0
+            carro_2_speed = 0
+            carro_3_speed = 0
+            carro_4_speed = 0
 
         carro_1_y += carro_1_speed
         if carro_1_y > janela.get_height():
@@ -163,12 +186,17 @@ while True:
         if carro_3_y > janela.get_height():
             carro_3_y = random.randint(-altura_carro_3, -100)
 
+        carro_4_y += carro_4_speed
+        if carro_4_y > janela.get_height():
+            carro_4_y = random.randint(-altura_carro4, -100)
+
         janela.blit(fundo, (0, y1))
         janela.blit(distance_element, distance_rect)
         janela.blit(carro, (x, y))
         janela.blit(carro_1, (carro_1_x, carro_1_y))
         janela.blit(carro_2, (carro_2_x, carro_2_y))
         janela.blit(carro_3, (carro_3_x, carro_3_y))
+        janela.blit(carro_4, (carro_4_x, carro_4_y))
 
         if game_over:
             game_over_bg_rect = pygame.Rect(janela.get_width() // 2 - 200, janela.get_height() // 2 - 50, 400, 100)
@@ -185,5 +213,7 @@ while True:
                 carro_1_y = random.randint(-altura_carro1, -100)
                 carro_2_y = random.randint(-altura_carro2, -100)
                 carro_3_y = random.randint(-altura_carro_3, -100)
+                carro_4_y = random.randint(-altura_carro4, -100)
+
 
     pygame.display.update()
